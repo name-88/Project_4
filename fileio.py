@@ -3,7 +3,7 @@ import requests
 from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 from tkinter import ttk
-
+import pyperclip
 
 def upload():
     try:
@@ -17,6 +17,9 @@ def upload():
                 if download_link:
                     entry.delete(0, END)
                     entry.insert(0, download_link)
+                    pyperclip.copy(download_link)  # Копирование ссылки в буфер обмена
+                    mb.showinfo("Ссылка скопирована", f"Ссылка {download_link} успешно скопирована")
+
                 else:
                     raise ValueError("Не удалось получить ссылку для скачивания")
     except ValueError as ve:
